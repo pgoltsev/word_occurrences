@@ -61,7 +61,7 @@ def count_word_occurrences(
 
     :param text: Input text
     :param split_func: Function for splitting the text into words.
-    :param accumulator: Accumulate result here. May be used for reducing of
+    :param accumulator: Accumulate result here. May be used for reducing
     memory usage. If not defined it will be created.
     :return: Counter object which key is a word and a value is
     occurrences of this word in the given text.
@@ -75,7 +75,7 @@ def count_word_occurrences(
     return accumulator
 
 
-word_regex = re.compile(r'\b([\w\']+)\b')
+word_regex = re.compile(r'\b([\w\'-]+)\b')
 """
 Regular expression of a word. It takes into account an apostrophe.
 """

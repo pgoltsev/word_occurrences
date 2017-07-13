@@ -84,7 +84,7 @@ class WordOccurrencesScriptTestCase(TestCase):
 
     def test_script_output(self):
         string = 'Some, :word\'s! ,occurrences, :,data? to check word\'s ' \
-                 'occurrences data'
+                 'occurrences data full-stack'
         tmp_file = NamedTemporaryFile()
         tmp_file.write(string.encode())
         tmp_file.flush()
@@ -94,6 +94,7 @@ class WordOccurrencesScriptTestCase(TestCase):
                    'word\'s: 2\n' \
                    'Some: 1\n' \
                    'check: 1\n' \
+                   'full-stack: 1\n' \
                    'to: 1\n'
 
         try:
