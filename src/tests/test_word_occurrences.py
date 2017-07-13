@@ -12,10 +12,10 @@ class WordOccurrencesFunctionsTestCase(TestCase):
     Test separate functions of the script.
     """
 
-    def test_split_words_func(self):
+    def test_split_text_to_words(self):
         expected = ['occurrences', 'mary\'s', 'some', 'text', 'texts', 'with']
 
-        actual = word_occurrences.split_to_word_func(
+        actual = word_occurrences.split_text_to_words(
             'some. mary\'s text\'! ;with:?! , texts, ,occurrences?'
         )
 

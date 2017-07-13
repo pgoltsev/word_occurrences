@@ -84,7 +84,7 @@ Regular expression of a word. It takes into account an apostrophe.
 """
 
 
-def split_to_word_func(text: str) -> Iterable[str]:
+def split_text_to_words(text: str) -> Iterable[str]:
     """
     Split text into words.
 
@@ -110,7 +110,7 @@ given text file."""
     word_occurrences = Counter()
     for line in args.file:
         count_word_occurrences(line,
-                               split_func=split_to_word_func,
+                               split_func=split_text_to_words,
                                accumulator=word_occurrences)
 
     sorted_word_occurrences = sort_by_occurrences(word_occurrences)
