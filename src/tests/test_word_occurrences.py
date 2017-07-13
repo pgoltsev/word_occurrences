@@ -1,4 +1,5 @@
 import subprocess
+from contextlib import contextmanager
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from unittest import TestCase, mock
@@ -73,6 +74,13 @@ class WordOccurrencesScriptTestCase(TestCase):
         script_path = Path.cwd() / Path('word_occurrences.py')
         cls.run_args = ('python3', script_path)
 
+    @contextmanager
+    def get_file_with_data(self, data: str):
+        with NamedTemporaryFile() as tmp_file:
+            tmp_file.write(data.encode())
+            tmp_file.flush()
+            yield tmp_file
+
     def test_script_needs_filename(self):
         with self.assertRaises(subprocess.CalledProcessError) as exc:
             subprocess.check_output(self.run_args, stderr=subprocess.PIPE)
@@ -83,11 +91,8 @@ class WordOccurrencesScriptTestCase(TestCase):
         )
 
     def test_script_output(self):
-        string = 'Some, :word\'s! ,occurrences, :,data? to check word\'s ' \
+        data = 'Some, :word\'s! ,occurrences, :,data? to check word\'s ' \
                  'occurrences data full-stack'
-        tmp_file = NamedTemporaryFile()
-        tmp_file.write(string.encode())
-        tmp_file.flush()
 
         expected = 'data: 2\n' \
                    'occurrences: 2\n' \
@@ -97,9 +102,15 @@ class WordOccurrencesScriptTestCase(TestCase):
                    'full-stack: 1\n' \
                    'to: 1\n'
 
-        try:
-            actual = subprocess.check_output(self.run_args + (tmp_file.name,))
-        finally:
-            tmp_file.close()
+        with self.get_file_with_data(data) as file:
+            actual = subprocess.check_output(self.run_args + (file.name,))
+
+        self.assertEqual(actual, expected.encode())
+
+    def test_script_with_empty_file(self):
+        expected = ''
+
+        with self.get_file_with_data(expected) as file:
+            actual = subprocess.check_output(self.run_args + (file.name,))
 
         self.assertEqual(actual, expected.encode())
