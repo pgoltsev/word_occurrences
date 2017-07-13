@@ -92,7 +92,7 @@ class WordOccurrencesScriptTestCase(TestCase):
 
     def test_script_output(self):
         data = 'Some, :word\'s! ,occurrences, :,data? to check word\'s ' \
-                 'occurrences data full-stack'
+                 'occurrences data full-stack -other-word-'
 
         expected = 'data: 2\n' \
                    'occurrences: 2\n' \
@@ -100,6 +100,7 @@ class WordOccurrencesScriptTestCase(TestCase):
                    'Some: 1\n' \
                    'check: 1\n' \
                    'full-stack: 1\n' \
+                   'other-word: 1\n' \
                    'to: 1\n'
 
         with self.get_file_with_data(data) as file:
