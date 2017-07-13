@@ -9,7 +9,7 @@ from typing import Mapping, Iterable, Counter, Callable, Tuple, Any
 WordCountMapping = Mapping[str, int]
 
 __author__ = 'pgoltsev'
-__version__ = '0.0.1'
+__version__ = '1.0.0'
 
 
 def print_statistic(iterable: Iterable,
