@@ -8,6 +8,9 @@ from typing import Mapping, Iterable, Counter, Callable, Tuple, Any
 
 WordCountMapping = Mapping[str, int]
 
+__author__ = 'pgoltsev'
+__version__ = '0.0.1'
+
 
 def print_statistic(iterable: Iterable,
                     formatter: Callable[[Any], str]) -> None:
