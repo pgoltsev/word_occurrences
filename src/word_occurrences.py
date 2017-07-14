@@ -8,7 +8,7 @@ from typing import Mapping, Iterable, Counter, Callable, Tuple, Any
 
 WordCountMapping = Mapping[str, int]
 
-__author__ = 'pgoltsev'
+__author__ = 'Pavel Goltsev'
 __version__ = '1.0.0'
 
 
