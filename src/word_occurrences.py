@@ -97,8 +97,8 @@ def split_text_to_words(text: str) -> Iterable[str]:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description="""Script counts word occurrences inside of the 
-given text file."""
+        description="""Script counts word occurrences inside of
+a given text file."""
     )
     parser.add_argument(
         'file',
